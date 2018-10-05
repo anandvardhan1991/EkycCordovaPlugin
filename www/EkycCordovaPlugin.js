@@ -8,6 +8,8 @@ var irisVerification = (args, success, error) =>{
     exec(success, error, 'EkycCordovaPlugin', 'irisVerification', [args]);
 };
 
-var irisVerification = (args, success, error) =>{
-    exec(success, error, 'EkycCordovaPlugin', 'irisVerification', [args]);
+var fingerPrintVerification = (args, success, error) =>{
+    exec(success, error, 'EkycCordovaPlugin', 'fingerPrintVerification', [args]);
 };
+
+module.exports = {otpVerification , irisVerification , fingerPrintVerification};
