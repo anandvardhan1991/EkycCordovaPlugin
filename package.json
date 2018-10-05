@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-ekyc",
+  "version": "1.0.0",
+  "description": "Cordova Plugin for Android For Ekyc Morpho and Iris device support and interaction.",
+  "cordova": {
+    "id": "cordova-plugin-ekyc",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anandvardhan1991/EkycCordovaPlugin.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Anand Vardhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anandvardhan1991/EkycCordovaPlugin/issues"
+  },
+  "homepage": "https://github.com/anandvardhan1991/EkycCordovaPlugin#readme"
+}
