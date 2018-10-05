@@ -19,6 +19,11 @@ import android.content.Intent;
  * This class echoes a string called from JavaScript.
  */
 public class EkycCordovaPlugin extends CordovaPlugin {
+    private CallbackContext callbackContext;
+
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+    }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -42,7 +47,7 @@ public class EkycCordovaPlugin extends CordovaPlugin {
 
     private void otpVerification(PersonalDetailsModelClass personalDetailsModelClass, CallbackContext callbackContext) {
         try{
-        callbackContext.success(personalDetailsModelClass.getQuotationNumber());        
+        callbackContext.success("" +personalDetailsModelClass.getQuotationNumber());        
         } catch(Exception e){
             callbackContext.error("Something went wrong"+ e);
         }
@@ -50,7 +55,7 @@ public class EkycCordovaPlugin extends CordovaPlugin {
 
     private void irisVerification(PersonalDetailsModelClass personalDetailsModelClass, CallbackContext callbackContext) {
         try{
-        callbackContext.success(personalDetailsModelClass.getQuotationNumber());
+        callbackContext.success("" +personalDetailsModelClass.getQuotationNumber());
         } catch(Exception e){
             callbackContext.error("Something went wrong"+ e);
         }
@@ -58,7 +63,7 @@ public class EkycCordovaPlugin extends CordovaPlugin {
 
     private void fingerPrintVerification(PersonalDetailsModelClass personalDetailsModelClass, CallbackContext callbackContext) {
         try{
-        callbackContext.success(personalDetailsModelClass.getQuotationNumber());
+        callbackContext.success("" +personalDetailsModelClass.getQuotationNumber());
         } catch(Exception e){
             callbackContext.error("Something went wrong"+ e);
         }
