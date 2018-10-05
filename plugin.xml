@@ -13,5 +13,9 @@
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
         <source-file src="src/android/EkycCordovaPlugin.java" target-dir="src/cordova/plugin/ekyc/EkycCordovaPlugin" />
         <source-file src="src/android/models/PersonalDetailsModelClass.java" target-dir="src/cordova/plugin/mathcalculator/Models"/>
+
+        <!--Added the JAR file dependency-->
+        <lib-file src="src/android/libs/classes.jar"/>
+        <lib-file src="src/android/libs/ECSUIDPIDGeneratorThin1.1r.jar"/>
     </platform>
 </plugin>
