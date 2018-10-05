@@ -2,15 +2,16 @@
 <plugin id="cordova-plugin-ekyc" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>EkycCordovaPlugin</name>
     <js-module name="EkycCordovaPlugin" src="www/EkycCordovaPlugin.js">
-        <clobbers target="cordova.plugins.EkycCordovaPlugin" />
+        <clobbers target="EkycCordovaPlugin" />
     </js-module>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="EkycCordovaPlugin">
-                <param name="android-package" value="cordova-plugin-ekyc.EkycCordovaPlugin" />
+                <param name="android-package" value="cordova.plugin.ekyc.EkycCordovaPlugin" />
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
-        <source-file src="src/android/EkycCordovaPlugin.java" target-dir="src/cordova-plugin-ekyc/EkycCordovaPlugin" />
+        <source-file src="src/android/EkycCordovaPlugin.java" target-dir="src/cordova/plugin/ekyc/EkycCordovaPlugin" />
+        <source-file src="src/android/models/PersonalDetailsModelClass.java" target-dir="src/cordova/plugin/mathcalculator/Models"/>
     </platform>
 </plugin>

@@ -1,5 +1,13 @@
 var exec = require('cordova/exec');
 
-exports.coolMethod = function (arg0, success, error) {
-    exec(success, error, 'EkycCordovaPlugin', 'coolMethod', [arg0]);
+var otpVerification = (args, success, error) =>{
+    exec(success, error, 'EkycCordovaPlugin', 'otpVerification', [args]);
+};
+
+var irisVerification = (args, success, error) =>{
+    exec(success, error, 'EkycCordovaPlugin', 'irisVerification', [args]);
+};
+
+var irisVerification = (args, success, error) =>{
+    exec(success, error, 'EkycCordovaPlugin', 'irisVerification', [args]);
 };
