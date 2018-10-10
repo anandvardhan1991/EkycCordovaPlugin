@@ -12,10 +12,22 @@
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
         <source-file src="src/android/EkycCordovaPlugin.java" target-dir="src/cordova/plugin/ekyc/EkycCordovaPlugin" />
-        <source-file src="src/android/models/PersonalDetailsModelClass.java" target-dir="src/cordova/plugin/mathcalculator/Models"/>
+        <source-file src="src/android/models/PersonalDetailsModelClass.java" target-dir="src/cordova/plugin/ekyc/Models"/>
+
+        <!--Adding to the Manifest.-->
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <activity android:name="com.ecs.rdlibrary.ECSBioCaptureActivity"></activity>
+        </config-file>
 
         <!--Added the JAR file dependency-->
         <lib-file src="src/android/libs/classes.jar"/>
         <lib-file src="src/android/libs/ECSUIDPIDGeneratorThin1.1r.jar"/>
+        <lib-file src="src/android/libs/simple-xml-2.7.1.jar"/>
     </platform>
 </plugin>
