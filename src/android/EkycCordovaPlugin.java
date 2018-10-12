@@ -24,6 +24,7 @@ import android.net.Uri;
 import java.net.URI;
 
 import com.ecs.rdlibrary.ECSBioCaptureActivity;
+import com.ecs.rdlibrary.response.PidData;
 
 
 /**
@@ -112,16 +113,6 @@ public class EkycCordovaPlugin extends CordovaPlugin {
         }
     }
 
-    private void sendErrorPluginResult(String messageToSend) throws JSONException {
-        final JSONObject result = new JSONObject();
-        result.put("ErrorCode",-2);
-        result.put("ErrorMsg",messageToSend);
-        PluginResult pluginResult = new PluginResult(PluginResult.Status.ERROR, result);
-        pluginResult.setKeepCallback(true);
-        this.callbackContext.sendPluginResult(pluginResult);
-    }
-
-
     private void showToastForGooglePlay(String messageToSend){
         this.cordova.getActivity().runOnUiThread(new Runnable(){
            public void run(){
@@ -138,11 +129,23 @@ public class EkycCordovaPlugin extends CordovaPlugin {
         context.startActivity(openPlayStoreIntent);
     }
 
+    private void sendSuccessPIDData(int errorCode, String messageToSend) throws JSONException{
+        final JSONObject result = new JSONObject();
+        result.put("ErrorCode",errorCode);
+        result.put("ErrorMsg",messageToSend);
+        PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
+        pluginResult.setKeepCallback(true);
+        this.callbackContext.sendPluginResult(pluginResult);
+    }
 
-
-
-
-
+    private void sendErrorPluginResult(int errorCode,String messageToSend) throws JSONException {
+        final JSONObject result = new JSONObject();
+        result.put("ErrorCode",errorCode);
+        result.put("ErrorMsg",messageToSend);
+        PluginResult pluginResult = new PluginResult(PluginResult.Status.ERROR, result);
+        pluginResult.setKeepCallback(true);
+        this.callbackContext.sendPluginResult(pluginResult);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -158,16 +161,33 @@ public class EkycCordovaPlugin extends CordovaPlugin {
                         registerTheFingerPrintDevice(context);
                     } catch(Exception e){
                         try{
-                        sendErrorPluginResult("RD Service not installed");
+                        sendErrorPluginResult(-2,"RD Service not installed");
                         } catch(JSONException jsonException){
                             jsonException.printStackTrace();
                         }
                     }
                 } else if(data.getStringExtra("ERROR_MESSAGE").contains("device from google playstore")){
                         showToastForGooglePlay("Please install the Morpho RD service for your device from google play store");
+                } else {
+                    try{
+                    sendErrorPluginResult(-1, data.getStringExtra("ERROR_MESSAGE"));
+                    } catch(JSONException jsonException){
+                        jsonException.printStackTrace();
+                    }
                 }
             } else {
-
+                if(data.getStringExtra("PID_DATA") == null){
+                    try{
+                    sendErrorPluginResult(-4,"Unable to capture fingerprint. pidData is Null");
+                    } catch(JSONException jsonException){
+                        jsonException.printStackTrace();
+                    }
+                }
+                try{
+                sendSuccessPIDData(1,data.getStringExtra("PID_DATA"));
+                } catch(JSONException jsonException){
+                    jsonException.printStackTrace();
+                }
             }
         }
     }
